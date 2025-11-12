@@ -71,6 +71,7 @@ function Player:draw()
 		love.graphics.setColor(1, 1, 1)
 	end
 
+	--draw particle
 	if self.fire then
 		love.graphics.draw(self.fire)
 	end

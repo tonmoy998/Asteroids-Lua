@@ -31,6 +31,13 @@ function Bullet:update(dt)
 	if not self.body then
 		return
 	end
+
+	if self.body:enter("Asteroid") then
+		local collision_data = self.body:getEnterCollisionData("Asteroid")
+		local asteroid = collision_data.collider:getObject()
+		asteroid:takedamage(300)
+		-- asteroid:destroy()
+	end
 	local vx = math.cos(self.angle) * self.speed
 	local vy = math.sin(self.angle) * self.speed
 	self.body:setLinearVelocity(vx, vy)
