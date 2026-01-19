@@ -1,5 +1,5 @@
 function love.conf(t)
 	t.window.title = "Astroids"
-	-- t.window.width = 640
-	-- t.window.height = 340
+	t.window.width = 1920
+	t.window.height = 1080
 end

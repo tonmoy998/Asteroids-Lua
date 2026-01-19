@@ -22,6 +22,7 @@ function Player:new(param)
 		thrusting = param.thrusting or false,
 		fire = {},
 		color = param.color or { 1, 1, 1 },
+		health = param.health or 100,
 	}
 	setmetatable(obj, self)
 	return obj

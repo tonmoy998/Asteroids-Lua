@@ -24,6 +24,7 @@ function Bullet:load()
 
 	self.body = self.world:newCircleCollider(self.x, self.y, self.size)
 	self.body:setCollisionClass("Bullet")
+	self.body:setType("dynamic")
 	self.body:setObject(self)
 end
 

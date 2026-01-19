@@ -35,6 +35,7 @@ function Asteroid:new(param)
 		dead = param.dead or false,
 		fill = param.fill or "line",
 		health = param.health or 100,
+		sound = param.sound or love.audio.newSource("src/assets/rock-destroy-6409.mp3", "static"),
 	}
 	obj.vertices = generatePolygon(obj.x, obj.y, obj.radius, obj.sides)
 	setmetatable(obj, Asteroid)
@@ -69,14 +70,30 @@ function Asteroid:draw()
 end
 -- take damage
 function Asteroid:takedamage(value)
-	value = value or 30
+	value = value or self.body:getMass() * 0.3
 	self.health = self.health - value
+end
+
+function Asteroid:getCentroid()
+	local verts = self.vertices
+	local x, y = 0, 0
+	local count = #verts / 2
+
+	for i = 1, #verts, 2 do
+		x = x + verts[i]
+		y = y + verts[i + 1]
+	end
+
+	return x / count, y / count
 end
 
 -- destroy the body
 function Asteroid:destroy()
 	if self.body then
 		self.body:destroy()
+		if self.sound then
+			self.sound:play()
+		end
 	end
 end
 
